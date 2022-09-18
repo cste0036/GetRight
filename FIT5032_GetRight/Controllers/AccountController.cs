@@ -17,7 +17,7 @@ namespace FIT5032_GetRight.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        private readonly ApplicationDbContext context;
+        private ApplicationDbContext context;
         public AccountController()
         {
             context = new ApplicationDbContext();
@@ -158,14 +158,26 @@ namespace FIT5032_GetRight.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
-                    return RedirectToAction("Index", "Home");
+                    //Assign Role to user Here       
+                    await this.UserManager.AddToRoleAsync(user.Id, model.UserRoles);
+                    if(model.UserRoles.Contains("Dieter"))
+                    {
+                        return RedirectToAction("Create", "Dieters");
+                    }
+                    else if(model.UserRoles.Contains("Trainer"))
+                    {
+                        return RedirectToAction("Create", "Trainers");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
                 }
                 ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin"))
                                   .ToList(), "Name", "Name");
