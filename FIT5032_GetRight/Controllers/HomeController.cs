@@ -9,21 +9,16 @@ namespace FIT5032_GetRight.Controllers
     [RequireHttps]
     public class HomeController : Controller
     {
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult About()
+        [Authorize(Roles = "Admin")]
+        public ActionResult AdminTools()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Administrator Tools.";
 
             return View();
         }

@@ -7,18 +7,25 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FIT5032_GetRight.Models;
+using Microsoft.AspNet.Identity;
 
 namespace FIT5032_GetRight.Controllers
 {
+    [RequireHttps]
+    [Authorize(Roles = "Admin,Trainer")]
     public class TrainersController : Controller
     {
         private FIT5032_GetRightModel db = new FIT5032_GetRightModel();
 
         // GET: Trainers
+        [Authorize]
         public ActionResult Index()
         {
+            var userId = User.Identity.GetUserId();
+            var trainersId = db.Trainers.Where(t => t.UserId == userId).ToList();
             var trainers = db.Trainers.Include(t => t.Gym);
-            return View(trainers.ToList());
+            
+            return View(trainersId.ToList());
         }
 
         // GET: Trainers/Details/5
@@ -48,8 +55,13 @@ namespace FIT5032_GetRight.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TrainerId,FirstName,LastName,UserId,Tags,Description,GymId")] Trainer trainer)
+        public ActionResult Create([Bind(Include = "TrainerId,FirstName,LastName,Tags,Description,GymId")] Trainer trainer)
         {
+            trainer.UserId = User.Identity.GetUserId();
+            ModelState.Clear();
+
+            TryValidateModel(trainer);
+
             if (ModelState.IsValid)
             {
                 db.Trainers.Add(trainer);

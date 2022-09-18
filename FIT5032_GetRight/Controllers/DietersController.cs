@@ -11,12 +11,14 @@ using Microsoft.AspNet.Identity;
 
 namespace FIT5032_GetRight.Controllers
 {
+    [RequireHttps]
+    
     public class DietersController : Controller
     {
         private FIT5032_GetRightModel db = new FIT5032_GetRightModel();
 
+        [Authorize(Roles = "Admin,Dieter")]
         // GET: Dieters
-        [Authorize]
         public ActionResult Index()
         {
             var userId = User.Identity.GetUserId();

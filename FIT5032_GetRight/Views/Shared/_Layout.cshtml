@@ -23,6 +23,7 @@
                 <ul class="nav navbar-nav">
                     @if (User.Identity.IsAuthenticated)
                     {
+                        <li>@Html.ActionLink("Admin Tools", "AdminTools", "Home")</li>
                         <li>@Html.ActionLink("User Details", "index", "Dieters")</li>
                         <li>@Html.ActionLink("Trainer Details", "index", "Trainers")</li>
                     }

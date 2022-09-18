@@ -13,6 +13,7 @@ using FIT5032_GetRight.Models;
 namespace FIT5032_GetRight.Controllers
 {
     [Authorize]
+    [RequireHttps]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
