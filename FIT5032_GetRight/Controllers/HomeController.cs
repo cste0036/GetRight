@@ -22,5 +22,7 @@ namespace FIT5032_GetRight.Controllers
 
             return View();
         }
+
+
     }
 }

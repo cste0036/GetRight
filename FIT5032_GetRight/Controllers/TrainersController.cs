@@ -18,17 +18,25 @@ namespace FIT5032_GetRight.Controllers
         private FIT5032_GetRightModel db = new FIT5032_GetRightModel();
 
         // GET: Trainers
-        [Authorize]
+        [Authorize(Roles = "Admin,Trainer")]
         public ActionResult Index()
         {
-            var userId = User.Identity.GetUserId();
-            var trainersId = db.Trainers.Where(t => t.UserId == userId).ToList();
-            var trainers = db.Trainers.Include(t => t.Gym);
-            
-            return View(trainersId.ToList());
+            if (User.IsInRole("Trainer"))
+            {
+                var userId = User.Identity.GetUserId();
+                var trainersId = db.Trainers.Where(t => t.UserId == userId).ToList();
+                var trainers = db.Trainers.Include(t => t.Gym);
+
+                return View(trainersId);
+            }
+            else
+            {
+                return View(db.Trainers.ToList());
+            }
         }
 
         // GET: Trainers/Details/5
+        [Authorize(Roles = "Admin,Trainer")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -44,6 +52,7 @@ namespace FIT5032_GetRight.Controllers
         }
 
         // GET: Trainers/Create
+        [Authorize(Roles = "Admin,Trainer")]
         public ActionResult Create()
         {
             ViewBag.GymId = new SelectList(db.Gyms, "GymId", "GymName");
@@ -74,6 +83,7 @@ namespace FIT5032_GetRight.Controllers
         }
 
         // GET: Trainers/Edit/5
+        [Authorize(Roles = "Admin,Trainer")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -94,6 +104,7 @@ namespace FIT5032_GetRight.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Trainer")]
         public ActionResult Edit([Bind(Include = "TrainerId,FirstName,LastName,UserId,Tags,Description,GymId")] Trainer trainer)
         {
             if (ModelState.IsValid)
@@ -107,6 +118,7 @@ namespace FIT5032_GetRight.Controllers
         }
 
         // GET: Trainers/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -124,6 +136,7 @@ namespace FIT5032_GetRight.Controllers
         // POST: Trainers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Trainer trainer = db.Trainers.Find(id);
