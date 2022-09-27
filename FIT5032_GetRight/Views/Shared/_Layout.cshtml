@@ -21,11 +21,19 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    <!-- Authenticated User Pages -->
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Admin Tools", "AdminTools", "Home")</li>
-                        <li>@Html.ActionLink("User Details", "index", "Dieters")</li>
-                        <li>@Html.ActionLink("Trainer Details", "index", "Trainers")</li>
+                        if( User.IsInRole("Admin")) {<li>@Html.ActionLink("Admin Tools", "AdminTools", "Home")</li>}
+
+                        if (User.IsInRole("Admin") || User.IsInRole("Dieter")) 
+                        {
+                            <li>@Html.ActionLink("User Details", "index", "Dieters")</li>
+                        }
+                        if (User.IsInRole("Admin") || User.IsInRole("Trainer")) 
+                        {
+                            <li>@Html.ActionLink("Trainer Details", "index", "Trainers")</li>
+                        }
                     }
 
                 </ul>
