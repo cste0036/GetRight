@@ -1,0 +1,67 @@
+﻿@model IEnumerable<FIT5032_GetRight.Models.Gym>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>GetRight Gyms</h2>
+
+<div id="map" style="height: 600px;"></div>
+
+
+
+<p>
+    @if (User.Identity.IsAuthenticated)
+    {
+        if (User.IsInRole("Admin"))
+        {
+            @Html.ActionLink("Create New", "Create")
+        }
+    }
+    </p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.GymName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Longitude)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Latitude)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr class="coordinates">
+            <td class="name">
+                @Html.DisplayFor(modelItem => item.GymName)
+            </td>
+            <td class="latitude">
+                @Html.DisplayFor(modelItem => item.Longitude)
+            </td>
+            <td class="longitude">
+                @Html.DisplayFor(modelItem => item.Latitude)
+            </td>
+            <td>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    if (User.IsInRole("Admin"))
+                    {
+                        @Html.ActionLink("| Edit |", "Edit", new { id = item.GymId })
+                        @Html.ActionLink("| Details |", "Details", new { id = item.GymId })
+                        @Html.ActionLink("| Delete |", "Delete", new { id = item.GymId })
+                    }
+                }
+            </td>
+        </tr>
+    }
+
+</table>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/leaflet")
+}

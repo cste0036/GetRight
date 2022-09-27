@@ -18,11 +18,9 @@ namespace FIT5032_GetRight.Models
 
         public int DieterId { get; set; }
 
-        [Required]
         [StringLength(50)]
         public string FirstName { get; set; }
 
-        [Required]
         [StringLength(50)]
         public string LastName { get; set; }
 

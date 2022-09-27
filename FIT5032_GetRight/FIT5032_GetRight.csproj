@@ -172,6 +172,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DietersController.cs" />
+    <Compile Include="Controllers\GymsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\TrainersController.cs" />
@@ -186,6 +187,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MealList.cs" />
+    <Compile Include="Models\Rating.cs" />
     <Compile Include="Models\Trainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -199,6 +201,12 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\layers-2x.png" />
+    <Content Include="Content\images\layers.png" />
+    <Content Include="Content\images\marker-icon-2x.png" />
+    <Content Include="Content\images\marker-icon.png" />
+    <Content Include="Content\images\marker-shadow.png" />
+    <Content Include="Content\leaflet.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -215,6 +223,9 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\leaflet-0.7.3.js" />
+    <Content Include="Scripts\leaflet-0.7.3.min.js" />
+    <Content Include="Scripts\LeafLetMap.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -260,6 +271,11 @@
     <Content Include="Views\Trainers\Details.cshtml" />
     <Content Include="Views\Trainers\Edit.cshtml" />
     <Content Include="Views\Trainers\Index.cshtml" />
+    <Content Include="Views\Gyms\Create.cshtml" />
+    <Content Include="Views\Gyms\Delete.cshtml" />
+    <Content Include="Views\Gyms\Details.cshtml" />
+    <Content Include="Views\Gyms\Edit.cshtml" />
+    <Content Include="Views\Gyms\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

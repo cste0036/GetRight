@@ -16,6 +16,7 @@ namespace FIT5032_GetRight.Models
         public virtual DbSet<DietHistory> DietHistories { get; set; }
         public virtual DbSet<Gym> Gyms { get; set; }
         public virtual DbSet<MealList> MealLists { get; set; }
+        public virtual DbSet<Rating> Rating { get; set; }
         public virtual DbSet<Trainer> Trainers { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -29,11 +30,12 @@ namespace FIT5032_GetRight.Models
                 .HasMany(e => e.MealLists)
                 .WithRequired(e => e.Dieter)
                 .WillCascadeOnDelete(false);
-
+            /*
             modelBuilder.Entity<Gym>()
                 .HasMany(e => e.Trainers)
                 .WithRequired(e => e.Gym)
                 .WillCascadeOnDelete(false);
+            */
         }
     }
 }

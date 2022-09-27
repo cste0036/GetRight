@@ -5,10 +5,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Your Personal Information</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @if (User.Identity.IsAuthenticated)
+    {
+        if (User.IsInRole("Admin"))
+        {@Html.ActionLink("Create New", "Create")}
+    }
 </p>
 <table class="table">
     <tr>
@@ -18,11 +22,17 @@
         <th>
             @Html.DisplayNameFor(model => model.LastName)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserId)
-        </th>
-        <th></th>
-    </tr>
+        @if (User.Identity.IsAuthenticated)
+        {
+            if (User.IsInRole("Admin"))
+            {
+                <th>
+                    @Html.DisplayNameFor(model => model.UserId)
+                </th>
+            }
+        }
+            <th></th>
+        </tr>
 
 @foreach (var item in Model) {
     <tr>
@@ -32,13 +42,25 @@
         <td>
             @Html.DisplayFor(modelItem => item.LastName)
         </td>
+        @if (User.Identity.IsAuthenticated)
+        {
+            if (User.IsInRole("Admin"))
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserId)
+                </td>
+            }
+        }
         <td>
-            @Html.DisplayFor(modelItem => item.UserId)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.DieterId }) |
-            @Html.ActionLink("Details", "Details", new { id = item.DieterId }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.DieterId })
+        @Html.ActionLink("Edit", "Edit", new { id = item.DieterId }) |
+        @Html.ActionLink("Details", "Details", new { id = item.DieterId }) |
+        @if (User.Identity.IsAuthenticated)
+        {
+            if (User.IsInRole("Admin"))
+            {
+                @Html.ActionLink("Delete", "Delete", new { id = item.DieterId })
+            }
+        }
         </td>
     </tr>
 }

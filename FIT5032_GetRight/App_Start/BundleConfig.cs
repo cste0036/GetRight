@@ -22,6 +22,10 @@ namespace FIT5032_GetRight
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
 
+            // I added the leafletMap.js to the bundle called leaflet.
+            bundles.Add(new ScriptBundle("~/bundles/leaflet").Include(
+            "~/Scripts/LeafletMap.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));

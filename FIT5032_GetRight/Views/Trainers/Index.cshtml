@@ -5,10 +5,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Trainer Details</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @if (User.Identity.IsAuthenticated)
+    {
+        if (User.IsInRole("Admin"))
+        {@Html.ActionLink("Create New", "Create")}
+}
 </p>
 <table class="table">
     <tr>
@@ -54,9 +58,15 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.TrainerId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.TrainerId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.TrainerId })
+            @Html.ActionLink("Edit", "Edit", new { id = item.TrainerId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.TrainerId }) |
+            @if (User.Identity.IsAuthenticated)
+            {
+                if (User.IsInRole("Admin"))
+                {
+                    @Html.ActionLink("Delete", "Delete", new { id = item.TrainerId })
+                }
+            }
         </td>
     </tr>
 }
