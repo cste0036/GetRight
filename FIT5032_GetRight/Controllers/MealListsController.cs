@@ -16,18 +16,35 @@ namespace FIT5032_GetRight.Controllers
         private FIT5032_GetRightModel db = new FIT5032_GetRightModel();
 
         // GET: MealLists
-        public ActionResult Index()
+        public ActionResult Index(DateTime? date = null)
         {
-            // Determine DieterID from current user
-            var userId = User.Identity.GetUserId();
-            var dieter = db.Dieters.Where(d => d.UserId == userId).FirstOrDefault();
-            var dieterId = dieter.DieterId;
+            // If the date value has not been set, create a new DateTime object for Today
+            if (!date.HasValue)
+            {
+                DateTime today = DateTime.Now;
+                today = today.Date;
 
-            var mealLists = db.MealLists.Where(m => m.DieterId == dieterId).ToList();
-            return View(mealLists);
+                // Determine DieterID from current user
+                var userId = User.Identity.GetUserId();
+                var dieter = db.Dieters.Where(d => d.UserId == userId).FirstOrDefault();
+                var dieterId = dieter.DieterId;
 
-            //var mealLists = db.MealLists.Include(m => m.Dieter);
-            //return View(mealLists.ToList());
+                // Return all meals for the current user for the selected date (default today's date)
+                var mealLists = db.MealLists.Where(m => m.DieterId == dieterId && m.MealDate == today).ToList();
+                return View(mealLists);
+            }
+            else
+            {
+                // Determine DieterID from current user and pass the date value from the form
+                var userId = User.Identity.GetUserId();
+                var dieter = db.Dieters.Where(d => d.UserId == userId).FirstOrDefault();
+                var dieterId = dieter.DieterId;
+
+                // Return all meals for the current user for the selected date (default today's date)
+                var mealLists = db.MealLists.Where(m => m.DieterId == dieterId && m.MealDate == date).ToList();
+                return View(mealLists);
+            }
+            
         }
 
         // GET: MealLists/Details/5

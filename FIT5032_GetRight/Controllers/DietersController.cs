@@ -20,6 +20,7 @@ namespace FIT5032_GetRight.Controllers
 
         // GET: Dieters
         [Authorize(Roles = "Admin,Dieter")]
+        
         public ActionResult Index()
         {
             if(User.IsInRole("Dieter"))
