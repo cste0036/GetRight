@@ -26,13 +26,17 @@
                     <!-- Authenticated User Pages -->
                     @if (User.Identity.IsAuthenticated)
                     {
-                        if( User.IsInRole("Admin")) {<li>@Html.ActionLink("Admin Tools", "AdminTools", "Home")</li>}
-
-                        if (User.IsInRole("Admin") || User.IsInRole("Dieter")) 
+                        if (User.IsInRole("Admin"))
                         {
+                            <li>@Html.ActionLink("Admin Tools", "AdminTools", "Home")</li>
+}
+
+                        if (User.IsInRole("Admin") || User.IsInRole("Dieter"))
+                        {
+                            <li>@Html.ActionLink("Nutrition Management", "index", "MealLists")</li>
                             <li>@Html.ActionLink("User Details", "index", "Dieters")</li>
                         }
-                        if (User.IsInRole("Admin") || User.IsInRole("Trainer")) 
+                        if (User.IsInRole("Admin") || User.IsInRole("Trainer"))
                         {
                             <li>@Html.ActionLink("Trainer Details", "index", "Trainers")</li>
                         }

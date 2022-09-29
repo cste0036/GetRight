@@ -13,6 +13,7 @@ namespace FIT5032_GetRight.Models
         public int MealId { get; set; }
 
         [Column(TypeName = "date")]
+        [DisplayFormat(DataFormatString = "{0:dd-MMM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime MealDate { get; set; }
 
         [Required]
