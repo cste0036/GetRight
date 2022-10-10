@@ -16,8 +16,9 @@ namespace FIT5032_GetRight.Models
         public virtual DbSet<DietHistory> DietHistories { get; set; }
         public virtual DbSet<Gym> Gyms { get; set; }
         public virtual DbSet<MealList> MealLists { get; set; }
-        public virtual DbSet<Rating> Rating { get; set; }
+        public virtual DbSet<Rating> Ratings { get; set; }
         public virtual DbSet<Trainer> Trainers { get; set; }
+        public virtual DbSet<Newsletter> Newsletters { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

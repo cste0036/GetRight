@@ -176,6 +176,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MealListsController.cs" />
+    <Compile Include="Controllers\NewslettersController.cs" />
     <Compile Include="Controllers\TrainersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -188,6 +189,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MealList.cs" />
+    <Compile Include="Models\Newsletter.cs" />
     <Compile Include="Models\Rating.cs" />
     <Compile Include="Models\Trainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -337,8 +339,15 @@
     <Content Include="Views\MealLists\Details.cshtml" />
     <Content Include="Views\MealLists\Edit.cshtml" />
     <Content Include="Views\MealLists\Index.cshtml" />
+    <Content Include="Views\Newsletters\Create.cshtml" />
+    <Content Include="Views\Newsletters\Delete.cshtml" />
+    <Content Include="Views\Newsletters\Details.cshtml" />
+    <Content Include="Views\Newsletters\Edit.cshtml" />
+    <Content Include="Views\Newsletters\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Uploads\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

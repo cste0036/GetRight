@@ -1,0 +1,8 @@
+﻿DROP TABLE [dbo].[Newsletter];
+CREATE TABLE [dbo].[Newsletter]
+(
+ [Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+ [Path] VARCHAR(50) NOT NULL,
+ [Name] VARCHAR(50) NOT NULL
+);
+GO
