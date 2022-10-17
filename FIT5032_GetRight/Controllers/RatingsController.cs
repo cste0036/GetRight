@@ -6,7 +6,9 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Core.Calendar;
 using FIT5032_GetRight.Models;
+using Microsoft.AspNet.Identity;
 
 namespace FIT5032_GetRight.Controllers
 {
@@ -17,7 +19,21 @@ namespace FIT5032_GetRight.Controllers
         // GET: Ratings
         public ActionResult Index()
         {
-            return View(db.Ratings.ToList());
+            if (User.IsInRole("Dieter"))
+            {
+                // Determine DieterID from current user
+                var userId = User.Identity.GetUserId();
+                var dieter = db.Dieters.Where(d => d.UserId == userId).FirstOrDefault();
+                var dieterId = dieter.DieterId;
+
+                // Return all appointments for the current user
+                var ratings = db.Ratings.Where(r => r.DieterId == dieterId).ToList();
+                return View(ratings);
+            }
+            else
+            {
+                return View(db.Ratings.ToList());
+            }      
         }
 
         // GET: Ratings/Details/5
@@ -38,6 +54,7 @@ namespace FIT5032_GetRight.Controllers
         // GET: Ratings/Create
         public ActionResult Create()
         {
+            ViewBag.TrainerId = new SelectList(db.Trainers, "TrainerId", "FirstName");
             return View();
         }
 
@@ -48,6 +65,16 @@ namespace FIT5032_GetRight.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "DieterId,TrainerId,rating1")] Rating rating)
         {
+            // Determine DieterID from current user
+            var userId = User.Identity.GetUserId();
+            var dieter = db.Dieters.Where(d => d.UserId == userId).FirstOrDefault();
+            rating.DieterId = dieter.DieterId;
+
+            // Store the Trainer's Name based on Id
+            var trainer = db.Trainers.Where(t => t.TrainerId == rating.TrainerId).FirstOrDefault();
+            rating.TrainerName = trainer.FirstName + " " + trainer.LastName;
+
+            ModelState.Clear();
             if (ModelState.IsValid)
             {
                 db.Ratings.Add(rating);
@@ -55,6 +82,7 @@ namespace FIT5032_GetRight.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.TrainerId = new SelectList(db.Trainers, "TrainerId", "FirstName");
             return View(rating);
         }
 

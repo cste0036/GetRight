@@ -26,9 +26,6 @@
             @Html.DisplayNameFor(model => model.LastName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UserId)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Tags)
         </th>
         <th>
@@ -49,19 +46,22 @@
             @Html.DisplayFor(modelItem => item.LastName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.UserId)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Tags)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.TrainerId }) |
-            @Html.ActionLink("Details", "Details", new { id = item.TrainerId }) |
+
+            @Html.ActionLink("Details", "Details", new { id = item.TrainerId })
+            @Html.ActionLink("Leave a Rating", "index", "Ratings")
+
             @if (User.Identity.IsAuthenticated)
             {
+                if (User.IsInRole("Trainer"))
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.TrainerId })
+                }
                 if (User.IsInRole("Admin"))
                 {
                     @Html.ActionLink("Delete", "Delete", new { id = item.TrainerId })

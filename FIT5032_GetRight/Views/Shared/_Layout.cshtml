@@ -36,6 +36,7 @@
                         {
                             <li>@Html.ActionLink("Nutrition Management", "index", "MealLists")</li>
                             <li>@Html.ActionLink("Appointments", "index", "Appointments")</li>
+                            <li>@Html.ActionLink("See Our Trainers", "index", "Trainers")</li>
                         }
                         if (User.IsInRole("Admin") || User.IsInRole("Trainer"))
                         {

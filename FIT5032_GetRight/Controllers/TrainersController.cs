@@ -12,13 +12,13 @@ using Microsoft.AspNet.Identity;
 namespace FIT5032_GetRight.Controllers
 {
     [RequireHttps]
-    [Authorize(Roles = "Admin,Trainer")]
+    [Authorize]
     public class TrainersController : Controller
     {
         private FIT5032_GetRightModel db = new FIT5032_GetRightModel();
 
         // GET: Trainers
-        [Authorize(Roles = "Admin,Trainer")]
+        [Authorize]
         public ActionResult Index()
         {
             if (User.IsInRole("Trainer"))
@@ -36,7 +36,7 @@ namespace FIT5032_GetRight.Controllers
         }
 
         // GET: Trainers/Details/5
-        [Authorize(Roles = "Admin,Trainer")]
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)

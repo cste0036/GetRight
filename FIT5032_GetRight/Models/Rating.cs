@@ -9,17 +9,16 @@ namespace FIT5032_GetRight.Models
     [Table("Rating")]
     public partial class Rating
     {
-        [Key]
-        [Column(Order = 0)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+
+        public int Id { get; set; }
+
         public int DieterId { get; set; }
 
-        [Key]
-        [Column(Order = 1)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int TrainerId { get; set; }
 
         [Column("rating")]
         public int rating1 { get; set; }
+
+        public string TrainerName { get; set; }
     }
 }
