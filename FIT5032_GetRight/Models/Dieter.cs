@@ -24,6 +24,9 @@ namespace FIT5032_GetRight.Models
         [StringLength(50)]
         public string LastName { get; set; }
 
+        [StringLength(50)]
+        public string Email { get; set; }
+
         [Required]
         [StringLength(100)]
         public string UserId { get; set; }

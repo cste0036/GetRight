@@ -68,6 +68,7 @@ namespace FIT5032_GetRight.Controllers
         public ActionResult Create([Bind(Include = "DieterId,FirstName,LastName")] Dieter dieter)
         {
             dieter.UserId = User.Identity.GetUserId();
+            dieter.Email = User.Identity.GetUserName();
 
             ModelState.Clear();
             TryValidateModel(dieter);

@@ -6,6 +6,7 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.1/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.1/dist/leaflet.js" integrity="sha256-NDI0K41gVbWqfkkaHj15IzU7PtMoelkzyKp8TOaFQ3s=" crossorigin=""></script>
 
@@ -29,16 +30,17 @@
                         if (User.IsInRole("Admin"))
                         {
                             <li>@Html.ActionLink("Admin Tools", "AdminTools", "Home")</li>
-}
+                        }
 
                         if (User.IsInRole("Admin") || User.IsInRole("Dieter"))
                         {
                             <li>@Html.ActionLink("Nutrition Management", "index", "MealLists")</li>
-                            <li>@Html.ActionLink("User Details", "index", "Dieters")</li>
+                            <li>@Html.ActionLink("Appointments", "index", "Appointments")</li>
                         }
                         if (User.IsInRole("Admin") || User.IsInRole("Trainer"))
                         {
                             <li>@Html.ActionLink("Trainer Details", "index", "Trainers")</li>
+                            <li>@Html.ActionLink("Appointments", "index", "Appointments")</li>
                         }
                     }
                     <li>@Html.ActionLink("Gyms", "index", "Gyms")</li>
@@ -55,7 +57,7 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
+    
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

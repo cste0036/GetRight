@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace FIT5032_GetRight.Models
 {
@@ -20,6 +21,11 @@ namespace FIT5032_GetRight.Models
         public string Contents { get; set; }
 
         public int Attachment { get; set; }
+
+        public List<SelectListItem> Emails { get; set; }
+
+        //public string[] Emails { get; set; }
+
 
     }
 }

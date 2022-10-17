@@ -1,0 +1,43 @@
+﻿@model FIT5032_GetRight.Models.Appointment
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Appointment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Length)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Length)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DieterId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DieterId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrainerId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrainerId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

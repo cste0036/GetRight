@@ -19,6 +19,7 @@ namespace FIT5032_GetRight.Models
         public virtual DbSet<Rating> Ratings { get; set; }
         public virtual DbSet<Trainer> Trainers { get; set; }
         public virtual DbSet<Newsletter> Newsletters { get; set; }
+        public virtual DbSet<Appointment> Appointments { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -19,16 +19,22 @@ namespace FIT5032_GetRight
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+            bundles.Add(new Bundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
 
             // I added the leafletMap.js to the bundle called leaflet.
             bundles.Add(new ScriptBundle("~/bundles/leaflet").Include(
-            "~/Scripts/LeafletMap.js"));
+                        "~/Scripts/LeafletMap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/fullcalendar").Include(
+                        "~/Scripts/lib/jquery.min.js",
+                        "~/Scripts/lib/moment.min.js",
+                        "~/Scripts/fullcalendar.js",
+                        "~/Scripts/calendar.js"));
         }
     }
 }

@@ -1,0 +1,49 @@
+﻿@model IEnumerable<FIT5032_GetRight.Models.Appointment>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/fullcalendar.css" rel="stylesheet" />
+<link href="~/Content/fullcalendar.min.css" rel="stylesheet" />
+
+<h2>Book an Appointment with a Trainer</h2>
+<div id="calendar"></div>
+<table class="table">
+    <tr>
+        <th>
+            Training Sessions
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AppDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TrainerId)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr class="appointments">
+            <td class="title">
+                Training Session
+            </td>
+            <td class="appdate">
+                @Html.DisplayFor(modelItem => item.AppDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TrainerId)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.AppointmentId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.AppointmentId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.AppointmentId })
+            </td>
+        </tr>
+    }
+
+</table>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/fullcalendar")
+}
