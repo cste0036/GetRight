@@ -159,7 +159,7 @@ namespace FIT5032_GetRight.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    //Assign Role to user Here
+                    //Assign Role to user based on the returned model
                     await this.UserManager.AddToRoleAsync(user.Id, model.UserRoles);
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
 
@@ -187,8 +187,8 @@ namespace FIT5032_GetRight.Controllers
 
                 }
                 
-                //ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin")).ToList(), "Name", "Name");
-
+                // In case User registration fails, repopulate the roles list
+                ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin")).ToList(), "Name", "Name");
                 AddErrors(result);
             }
 
@@ -395,11 +395,14 @@ namespace FIT5032_GetRight.Controllers
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
+                    // If the External login is successfully registered automatically assign them to a Dieter role
+                    await this.UserManager.AddToRoleAsync(user.Id, "Dieter");
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
                     if (result.Succeeded)
                     {
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                        return RedirectToLocal(returnUrl);
+                        return RedirectToAction("Create", "Dieters");
+                        //return RedirectToLocal(returnUrl);
                     }
                 }
                 AddErrors(result);
