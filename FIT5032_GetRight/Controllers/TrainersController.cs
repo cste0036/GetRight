@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -43,11 +44,18 @@ namespace FIT5032_GetRight.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            
+            // Find the Trainer and their Average Rating
             Trainer trainer = db.Trainers.Find(id);
+            var ratings = db.Ratings.Where(t => t.TrainerId == id).ToList();
+            var avg = ratings.Average(x => x.rating1).ToString("0.00");
+
             if (trainer == null)
             {
                 return HttpNotFound();
             }
+            // Return the average rating and Trainer details to View
+            ViewBag.Average = avg;
             return View(trainer);
         }
 
