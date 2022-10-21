@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Web.Mvc;
 
 namespace FIT5032_GetRight.Controllers
@@ -76,12 +77,20 @@ namespace FIT5032_GetRight.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "MealId,MealDate,MealName,KiloJoule")] MealList mealList)
         {
+            // Generate userID from the identity of logged in User
             var userId = User.Identity.GetUserId();
             var dieter = db.Dieters.Where(d => d.UserId == userId).FirstOrDefault();
             var dieterId = dieter.DieterId;
 
             mealList.DieterId = dieterId;
             TryValidateModel(mealList);
+
+            // Apply Regex Check on User's Name to ensure no illegal characters are passed to the database
+            if (!Regex.IsMatch(mealList.MealName, @"^[a-zA-Z'.\s]{1,25}$"))
+            {
+                ModelState.AddModelError("", "Meal Name contained illegal characters.");
+                return View(mealList);
+            }
 
             if (ModelState.IsValid)
             {

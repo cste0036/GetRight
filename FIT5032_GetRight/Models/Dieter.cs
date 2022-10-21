@@ -18,13 +18,14 @@ namespace FIT5032_GetRight.Models
 
         public int DieterId { get; set; }
 
-        [StringLength(50)]
+        [StringLength(50, ErrorMessage = "{0} must be less than {2} characters long.")]
         public string FirstName { get; set; }
 
-        [StringLength(50)]
+        [StringLength(50, ErrorMessage = "{0} must be less than {2} characters long.")]
         public string LastName { get; set; }
 
-        [StringLength(50)]
+        [StringLength(50, ErrorMessage = "{0} must be less than {2} characters long.")]
+        [EmailAddress]
         public string Email { get; set; }
 
         [Required]

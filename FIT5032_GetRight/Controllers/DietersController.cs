@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -8,10 +9,10 @@ using System.Web;
 using System.Web.Mvc;
 using FIT5032_GetRight.Models;
 using Microsoft.AspNet.Identity;
+using System.Xml.Linq;
 
 namespace FIT5032_GetRight.Controllers
 {
-    [RequireHttps]
     
     public class DietersController : Controller
     {
@@ -19,6 +20,7 @@ namespace FIT5032_GetRight.Controllers
 
 
         // GET: Dieters
+        [RequireHttps]
         [Authorize(Roles = "Admin,Dieter")]
         
         public ActionResult Index()
@@ -37,6 +39,7 @@ namespace FIT5032_GetRight.Controllers
         }
 
         // GET: Dieters/Details/5
+        [RequireHttps]
         [Authorize(Roles = "Admin,Dieter")]
         public ActionResult Details(int? id)
         {
@@ -53,6 +56,7 @@ namespace FIT5032_GetRight.Controllers
         }
 
         // GET: Dieters/Create
+        [RequireHttps]
         [Authorize(Roles = "Admin,Dieter")]
         public ActionResult Create()
         {
@@ -69,6 +73,13 @@ namespace FIT5032_GetRight.Controllers
         {
             dieter.UserId = User.Identity.GetUserId();
             dieter.Email = User.Identity.GetUserName();
+
+            // Apply Regex Check on User's Name to ensure no illegal characters are passed to the database
+            if (!Regex.IsMatch(dieter.FirstName, @"^[a-zA-Z'.\s]{1,50}$") && !Regex.IsMatch(dieter.LastName, @"^[a-zA-Z'.\s]{1,50}$"))
+            {
+                ModelState.AddModelError("", "Name contained illegal characters.");
+                return View(dieter);
+            }
 
             ModelState.Clear();
             TryValidateModel(dieter);

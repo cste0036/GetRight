@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using FIT5032_GetRight.Models;
@@ -48,6 +49,15 @@ namespace FIT5032_GetRight.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "GymId,GymName,Longitude,Latitude")] Gym gym)
         {
+
+            // Apply Regex Check on User's Name to ensure no illegal characters are passed to the database
+            if (!Regex.IsMatch(gym.GymName, @"^[a-zA-Z'.\s]{1,50}$"))
+            {
+                ModelState.AddModelError("", "Gym Name contained illegal characters.");
+                return View(gym);
+            }
+
+
             if (ModelState.IsValid)
             {
                 db.Gyms.Add(gym);

@@ -14,7 +14,7 @@
 <div class="form-horizontal">
     <h4>Appointment</h4>
     <hr />
-
+    @Html.ValidationSummary("", new { @class = "text-danger" })
     <div class="form-group">
         @Html.LabelFor(model => model.AppDate, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -31,7 +31,6 @@
         </div>
     </div>
 
-    <!-- MUST UPDATE TO SELECTLIST STYLE -->
     <div class="form-group">
         @Html.LabelFor(model => model.TrainerId, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">

@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using FIT5032_GetRight.Models;
@@ -78,6 +79,20 @@ namespace FIT5032_GetRight.Controllers
             ModelState.Clear();
 
             TryValidateModel(trainer);
+
+            // Apply Regex Check on User's Name to ensure no illegal characters are passed to the database
+            if (!Regex.IsMatch(trainer.FirstName, @"^[a-zA-Z'.\s]{1,50}$") && !Regex.IsMatch(trainer.LastName, @"^[a-zA-Z'.\s]{1,50}$"))
+            {
+                ModelState.AddModelError("", "Name contained illegal characters.");
+                return View(trainer);
+            }
+
+            // Apply Regex Check on Description and Tags to ensure no illegal characters are passed to the database
+            if (!Regex.IsMatch(trainer.Description, @"^[a-zA-Z'.\s]{1,100}$") && !Regex.IsMatch(trainer.Tags, @"^[a-zA-Z'.\s]{1,100}$"))
+            {
+                ModelState.AddModelError("", "Description/Tags contained illegal characters.");
+                return View(trainer);
+            }
 
             if (ModelState.IsValid)
             {

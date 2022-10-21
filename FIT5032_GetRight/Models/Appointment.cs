@@ -12,7 +12,7 @@ namespace FIT5032_GetRight.Models
         public int AppointmentId { get; set; }
 
         public DateTime AppDate { get; set; }
-
+        
         public int Length { get; set; }
 
         public int DieterId { get; set; }
