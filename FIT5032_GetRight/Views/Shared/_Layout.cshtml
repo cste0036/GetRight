@@ -4,15 +4,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.1/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
     <link href="~/Content/GetRightStyleSheet.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.1/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.1/dist/leaflet.js" integrity="sha256-NDI0K41gVbWqfkkaHj15IzU7PtMoelkzyKp8TOaFQ3s=" crossorigin=""></script>
 
 </head>
 <body>
-    <div class="navbar navbar-light navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" title="more options">
@@ -29,21 +28,21 @@
                     {
                         if (User.IsInRole("Admin"))
                         {
-                            <li class="nav-item">@Html.ActionLink("Admin Tools", "AdminTools", "Home", null, new { @class = "link" })</li>
-                            <li class="nav-item">@Html.ActionLink("Appointments", "index", "Appointments", null, new { @class = "link" })</li>
-                            <li class="nav-item">@Html.ActionLink("See Our Trainers", "index", "Trainers", null, new { @class = "link" })</li>
+                            <li>@Html.ActionLink("Admin Tools", "AdminTools", "Home", null, new { @class = "link" })</li>
+                            <li>@Html.ActionLink("Appointments", "index", "Appointments", null, new { @class = "link" })</li>
+                            <li>@Html.ActionLink("See Our Trainers", "index", "Trainers", null, new { @class = "link" })</li>
                         }
 
                         if (User.IsInRole("Dieter"))
                         {
-                            <li class="nav-item">@Html.ActionLink("Nutrition Management", "index", "MealLists", null, new { @class = "link" })</li>
-                            <li class="nav-item">@Html.ActionLink("Appointments", "index", "Appointments", null, new { @class = "link" })</li>
-                            <li class="nav-item">@Html.ActionLink("See Our Trainers", "index", "Trainers", null, new { @class = "link" })</li>
+                            <li>@Html.ActionLink("Nutrition Management", "index", "MealLists", null, new { @class = "link" })</li>
+                            <li>@Html.ActionLink("Appointments", "index", "Appointments", null, new { @class = "link" })</li>
+                            <li>@Html.ActionLink("See Our Trainers", "index", "Trainers", null, new { @class = "link" })</li>
                         }
                         if (User.IsInRole("Trainer"))
                         {
-                            <li class="nav-item">@Html.ActionLink("Trainer Details", "index", "Trainers", null, new { @class = "link" })</li>
-                            <li class="nav-item">@Html.ActionLink("Appointments", "index", "Appointments", null, new { @class = "link" })</li>
+                            <li>@Html.ActionLink("Trainer Details", "index", "Trainers", null, new { @class = "link" })</li>
+                            <li>@Html.ActionLink("Appointments", "index", "Appointments", null, new { @class = "link" })</li>
                         }
                     }
                     <li>@Html.ActionLink("Gyms", "index", "Gyms", null, new { @class = "link" })</li>
@@ -63,6 +62,7 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/modernizr")
     @RenderSection("scripts", required: false)
 </body>
 </html>

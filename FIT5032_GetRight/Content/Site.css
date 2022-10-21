@@ -1,11 +1,6 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background-image: url('images/bg-mask.png');
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    margin: auto;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -29,8 +24,8 @@ textarea {
 }
 
 /* Navbar colour schemes*/
-.navbar-light .navbar-toggle:hover,
-.navbar-light .navbar-toggle:focus {
+.navbar-inverse .navbar-toggle:hover,
+.navbar-inverse .navbar-toggle:focus {
     background: #45caff;
     border-color: #777
 }

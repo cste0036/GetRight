@@ -1,5 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity
-<link href="~/Content/GetRightNavbar.css" rel="stylesheet" />
+<link href="~/Content/GetRightStyleSheet.css" rel="stylesheet" />
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right link" }))
