@@ -16,7 +16,7 @@ namespace FIT5032_GetRight.Utils
         // Please use your API KEY here.
         private const String API_KEY = "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";
 
-        public async Task SendAsync(String toEmail, String subject, String contents, String filePath)
+        public async Task SendAsync(String toEmail, String subject, String contents, String filePath = "")
         {
             var client = new SendGridClient(API_KEY);
             var from = new EmailAddress("callumstein.psn@gmail.com", "FIT5032 GetRight Newsletter");
@@ -26,7 +26,7 @@ namespace FIT5032_GetRight.Utils
             var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
 
             // Email Attachment
-            if (filePath != null)
+            if (filePath != "")
             {
 
                 using (var fileStream = File.OpenRead(filePath))

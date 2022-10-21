@@ -1,0 +1,14 @@
+﻿.navbar {
+    background: linear-gradient(to left, #00ff87, #60efff);
+    border-color: #fff;
+}
+
+.nav .navbar-nav .nav-link {
+    color: #ffffff;
+    font-size: 40px;
+}
+
+.link {
+    color: #000000;
+    font-size: 14px;
+}

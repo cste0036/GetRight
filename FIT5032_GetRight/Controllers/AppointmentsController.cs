@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using DDay.iCal;
 using FIT5032_GetRight.Models;
+using FIT5032_GetRight.Utils;
 using Microsoft.AspNet.Identity;
 
 namespace FIT5032_GetRight.Controllers
@@ -98,6 +99,13 @@ namespace FIT5032_GetRight.Controllers
             {
                 db.Appointments.Add(appointment);
                 db.SaveChanges();
+
+                // Generate Appointment reminder email and send to current user
+                string subject = "Appointment Booked!";
+                string contents = "Your Appointment for " + appointment.AppDate.ToString() + " Has been booked!";
+                EmailSender es = new EmailSender();
+                es.SendAsync(dieter.Email, subject, contents);
+
                 return RedirectToAction("Index");
             }
 

@@ -10,7 +10,7 @@ namespace FIT5032_GetRight.Models
     public class SendEmailViewModel
     {
         [Display(Name = "Email address")]
-        [Required(ErrorMessage = "Please enter an email address.")]
+        //[Required(ErrorMessage = "Please enter an email address.")]
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string ToEmail { get; set; }
 
@@ -21,11 +21,5 @@ namespace FIT5032_GetRight.Models
         public string Contents { get; set; }
 
         public int Attachment { get; set; }
-
-        public List<SelectListItem> Emails { get; set; }
-
-        //public string[] Emails { get; set; }
-
-
     }
 }

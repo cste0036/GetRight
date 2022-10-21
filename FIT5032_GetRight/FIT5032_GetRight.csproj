@@ -391,6 +391,10 @@
     <Content Include="Content\fullcalendar.min.css" />
     <Content Include="Content\fullcalendar.print.css" />
     <Content Include="Content\fullcalendar.print.min.css" />
+    <Content Include="Content\GetRightStyleSheet.css" />
+    <Content Include="Content\HomePageStyle.css" />
+    <Content Include="Content\images\Background.jpg" />
+    <Content Include="Content\images\bg-mask.png" />
     <Content Include="Content\images\layers-2x.png" />
     <Content Include="Content\images\layers.png" />
     <Content Include="Content\images\marker-icon-2x.png" />
