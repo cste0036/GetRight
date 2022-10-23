@@ -12,6 +12,9 @@
     {
         if (User.IsInRole("Admin"))
         {@Html.ActionLink("Create New", "Create")}
+
+        if (User.IsInRole("Dieter"))
+        {@Html.ActionLink("Leave a Trainer Rating", "index", "Ratings")}
 }
 </p>
 <table class="table">
@@ -62,10 +65,7 @@
 
                     @if (User.Identity.IsAuthenticated)
                     {
-                        if (User.IsInRole("Dieter"))
-                        {
-                            @Html.ActionLink("Leave a Rating", "index", "Ratings")
-                        }
+                        
                         if (User.IsInRole("Trainer"))
                         {
                             @Html.ActionLink("Edit", "Edit", new { id = item.TrainerId })
