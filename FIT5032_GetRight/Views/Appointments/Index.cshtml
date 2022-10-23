@@ -8,6 +8,21 @@
 <link href="~/Content/fullcalendar.min.css" rel="stylesheet" />
 
 <h2>Book an Appointment with a Trainer</h2>
+<!-- Use TempData to pass an alert message to the user if an invalid date is selected -->
+<div>
+    @if (TempData["Message"] != null)
+    {
+        <script type="text/javascript">
+
+            window.onload = function () {
+                alert("@TempData["Message"]");
+            };
+        </script>
+
+    }
+
+</div>
+
 <div id="calendar"></div>
 <table class="table">
     <tr>

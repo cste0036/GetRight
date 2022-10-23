@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Meals for the Day:</h2>
+<h2>Meals for the Day: @ViewBag.SelectedDate</h2>
 <p>
     @using (Html.BeginForm("Index", "MealLists", FormMethod.Get))
     {

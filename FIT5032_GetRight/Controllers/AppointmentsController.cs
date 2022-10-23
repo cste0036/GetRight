@@ -77,6 +77,14 @@ namespace FIT5032_GetRight.Controllers
 
             Appointment a = new Appointment();
             DateTime convertedDate = DateTime.Parse(date);
+
+            // Check if the chosen date is in the past
+            if (convertedDate <= DateTime.Today.AddDays(-1))
+            {
+                TempData["Message"] = "Cannot book appointments for past dates.";
+                return RedirectToAction("Index");
+            }
+
             a.AppDate = convertedDate;
             ViewBag.TrainerId = new SelectList(db.Trainers, "TrainerId", "FirstName");
             return View(a);

@@ -1,4 +1,5 @@
-﻿using FIT5032_GetRight.Models;
+﻿using DDay.iCal;
+using FIT5032_GetRight.Models;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Data;
@@ -32,6 +33,7 @@ namespace FIT5032_GetRight.Controllers
 
                 // Return all meals for the current user for the selected date (default today's date)
                 var mealLists = db.MealLists.Where(m => m.DieterId == dieterId && m.MealDate == today).ToList();
+                ViewBag.SelectedDate = today.ToShortDateString();
                 return View(mealLists);
             }
             else
@@ -42,8 +44,10 @@ namespace FIT5032_GetRight.Controllers
                 var dieterId = dieter.DieterId;
 
                 // Return all meals for the current user for the selected date (default today's date)
+                ViewBag.SelectedDate = date.ToString();
                 var mealLists = db.MealLists.Where(m => m.DieterId == dieterId && m.MealDate == date).ToList();
                 return View(mealLists);
+      
             }
             
         }
