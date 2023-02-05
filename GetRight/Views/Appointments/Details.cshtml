@@ -1,0 +1,43 @@
+﻿@model GetRight.Models.Appointment
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Appointment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Dieter.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dieter.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Trainer.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Trainer.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Length)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Length)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

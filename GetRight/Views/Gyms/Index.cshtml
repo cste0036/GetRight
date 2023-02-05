@@ -1,0 +1,69 @@
+﻿@model IEnumerable<GetRight.Models.Gym>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.1/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.9.1/dist/leaflet.js" integrity="sha256-NDI0K41gVbWqfkkaHj15IzU7PtMoelkzyKp8TOaFQ3s=" crossorigin=""></script>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Gyms</h2>
+<div id="map" style="height: 600px;"></div>
+
+
+
+<p>
+    @if (User.Identity.IsAuthenticated)
+    {
+        if (User.IsInRole("Admin"))
+        {
+            @Html.ActionLink("Create New", "Create")
+        }
+    }
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.GymName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Longitude)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Latitude)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr class="coordinates">
+            <td class="name">
+                @Html.DisplayFor(modelItem => item.GymName)
+            </td>
+            <td class="latitude">
+                @Html.DisplayFor(modelItem => item.Longitude)
+            </td>
+            <td class="longitude">
+                @Html.DisplayFor(modelItem => item.Latitude)
+            </td>
+            <td>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    if (User.IsInRole("Admin"))
+                    {
+                        @Html.ActionLink("| Edit |", "Edit", new { id = item.GymId })
+                        @Html.ActionLink("| Details |", "Details", new { id = item.GymId })
+                        @Html.ActionLink("| Delete |", "Delete", new { id = item.GymId })
+                    }
+                }
+            </td>
+        </tr>
+    }
+
+</table>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/leaflet")
+}

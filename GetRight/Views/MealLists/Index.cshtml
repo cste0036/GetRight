@@ -1,0 +1,72 @@
+﻿@model IEnumerable<GetRight.Models.MealList>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Meals for the Day: @ViewBag.SelectedDate</h2>
+<p>
+    @using (Html.BeginForm("Index", "MealLists", FormMethod.Get))
+    {
+        <input type="date" id="date" name="date" />
+        <input type="submit" name="submit" value="Refresh" />
+    }
+</p>
+
+<p>
+    @Html.ActionLink("Add a Meal", "Create")
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MealDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MealName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KiloJoule)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MealDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MealName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KiloJoule)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.MealId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.MealId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.MealId })
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.bootstrap.js"></script>
+    <script>
+        $('#date').val(new Date().toJSON().slice(0, 10));
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('.table').DataTable();
+        });
+    </script>
+}
+<link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />

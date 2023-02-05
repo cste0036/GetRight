@@ -1,0 +1,40 @@
+﻿@model IEnumerable<GetRight.Models.DietHistory>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Dieter.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Weight)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dieter.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Weight)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.RecordDate }) |
+            @Html.ActionLink("Details", "Details", new { id=item.RecordDate }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.RecordDate })
+        </td>
+    </tr>
+}
+
+</table>

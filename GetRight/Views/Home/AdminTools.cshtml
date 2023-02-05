@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "AdminTools";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron">
+    <h1>Admin Management</h1>
+    <h3>@ViewBag.Message</h3>
+    <p class="lead">Select the option from below to be redirected to the specific area of choice.</p>
+</div>
+
+
+
+<div class="row">
+    <div class="col-md-4">
+
+        <h2>Upload Newsletters</h2>
+        <p>
+            @Html.ActionLink("Newsletter Management Page", "index", "Newsletters")
+        </p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+
+            <h2>Send Newsletter Email</h2>
+            <p>
+                @Html.ActionLink("Email Page", "SendEmail", "Home")
+            </p>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Gym Management</h2>
+            <p>
+                @Html.ActionLink("Gym Management Page", "index", "Gyms")
+            </p>
+        </div>
+    </div>
+

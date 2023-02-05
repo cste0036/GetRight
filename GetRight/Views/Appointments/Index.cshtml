@@ -1,0 +1,66 @@
+﻿@model IEnumerable<GetRight.Models.Appointment>
+
+<link href="~/Content/fullcalendar.css" rel="stylesheet" />
+<link href="~/Content/fullcalendar.min.css" rel="stylesheet" />
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Book an Appointment with a Trainer</h2>
+
+<!-- Use TempData to pass an alert message to the user if an invalid date is selected -->
+<div>
+    @if (TempData["Message"] != null)
+    {
+        <script type="text/javascript">
+
+            window.onload = function () {
+                alert("@TempData["Message"]");
+            };
+        </script>
+
+    }
+
+</div>
+
+<div id="calendar"></div>
+<table class="table">
+    <tr>
+        <th>
+            Training Sessions
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AppDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TrainerId)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr class="appointments">
+            <td class="title">
+                Training Session
+            </td>
+            <td class="appdate">
+                @Html.DisplayFor(modelItem => item.AppDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TrainerId)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+
+</table>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/fullcalendar")
+}
