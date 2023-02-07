@@ -84,7 +84,7 @@ DROP TABLE [dbo].[Rating];
 CREATE TABLE [dbo].[Rating] (
 	[DieterId] int NOT NULL,
 	[TrainerId] int NOT NULL,
-	rating int NOT NULL CHECK(NumericField BETWEEN 1 AND 5)
+	rating int NOT NULL
 	PRIMARY KEY (DieterId, TrainerId),
 	FOREIGN KEY (DieterId) REFERENCES Dieter (DieterId),
 	FOREIGN KEY (TrainerId) REFERENCES Trainer (TrainerId)
