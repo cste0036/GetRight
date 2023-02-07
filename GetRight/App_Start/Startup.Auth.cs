@@ -60,8 +60,8 @@ namespace GetRight
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
-                ClientId = "166411374933-u69erv3dhac38vpt8bnk68upe8e5mmk4.apps.googleusercontent.com",
-                ClientSecret = "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"
+                ClientId = "365685473910-9e5g7b93fiebut30fjkmim1b12efifmj.apps.googleusercontent.com",
+                ClientSecret = "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"
             });
         }
     }

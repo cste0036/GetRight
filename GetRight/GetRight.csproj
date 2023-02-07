@@ -248,6 +248,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Utils\EmailSender.cs" />
+    <Compile Include="Utils\Roles.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\aspnet-GetRight-20230204122452.mdf" />
@@ -699,8 +700,11 @@
     <Content Include="Views\Ratings\Index.cshtml" />
     <Content Include="Views\Home\SendEmail.cshtml" />
     <Content Include="Views\Home\AdminTools.cshtml" />
+    <Content Include="Views\Home\CreateRoles.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Roles\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

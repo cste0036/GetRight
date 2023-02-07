@@ -20,6 +20,16 @@ namespace GetRight.Controllers
             return View();
         }
 
+        [AllowAnonymous]
+        // GET: Create Roles
+        public ActionResult CreateRoles()
+        {
+            // Create the Roles object and run the server setup method THIS IS NOT SECURE
+            Roles r = new Roles();
+            r.CreateRolesAndUsers();
+            return View();
+        }
+
         [Authorize(Roles = "Admin")]
         public ActionResult AdminTools()
         {
